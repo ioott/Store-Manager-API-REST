@@ -1,5 +1,6 @@
 const express = require('express');
 const productController = require('./controllers/productController');
+
 require('express-async-errors');
 
 const app = express();
@@ -15,7 +16,7 @@ app.get('/products/:id', productController.getById);
 app.post('/products', productController.newProduct);
 
 app.use((err, req, res, _next) => {
-  const { code, message } = err;
+  const [code, message] = err.message.split('|');
   res.status(code).json({ message });
 });
 

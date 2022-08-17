@@ -12,9 +12,8 @@ const productService = {
     }
   },
   newProduct: async (newProduct) => {
-    // await validations.checkIfNameExists(newProduct);
-    // await validations.checkNameQtt(newProduct);
-    const product = await productModel.newProduct(newProduct);
+    const checkName = validations.checkName(newProduct);
+    const product = await productModel.newProduct(checkName);
     return product;
   },
 };
