@@ -11,6 +11,12 @@ const productService = {
       return selectedProduct;
     }
   },
+  newProduct: async (newProduct) => {
+    // await validations.checkIfNameExists(newProduct);
+    // await validations.checkNameQtt(newProduct);
+    const product = await productModel.newProduct(newProduct);
+    return product;
+  },
 };
 
 module.exports = productService;

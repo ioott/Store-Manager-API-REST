@@ -11,6 +11,12 @@ const productModel = {
     const [[selectedProduct]] = await db.execute(sql, [id]);
     return selectedProduct;
   },
+  newProduct: async (newProduct) => {
+    const { name } = newProduct;
+    const sql = 'INSERT INTO StoreManager.products (name) VALUES (?)';
+    const [{ insertId }] = await db.execute(sql, [name]);
+    return insertId;
+  },
 };
 
 module.exports = productModel;
