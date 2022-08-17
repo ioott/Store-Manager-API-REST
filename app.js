@@ -1,23 +1,19 @@
 const express = require('express');
-const productController = require('./controllers/productController');
-
 require('express-async-errors');
+const productRoute = require('./middlewares/router/product.router');
 
 const app = express();
 app.use(express.json());
+app.use('/products', productRoute);
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
 });
 
-app.get('/products', productController.getAll);
-app.get('/products/:id', productController.getById);
-app.post('/products', productController.newProduct);
-
 app.use((err, req, res, _next) => {
   const [code, message] = err.message.split('|');
-  res.status(code).json({ message });
+  return res.status(code).json({ message });
 });
 
 // não remova essa exportação, é para o avaliador funcionar

@@ -5,8 +5,7 @@ const validations = {
   checkIfExists: async (id) => {
     const exists = await productModel.getById(id);
     if (!exists) {
-      const err = new Error('Product not found');
-      err.code = 404;
+      const err = new Error('404|Product not found');
       throw err;
     }
     return exists;
