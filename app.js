@@ -1,5 +1,6 @@
 const express = require('express');
 const productController = require('./controllers/productController');
+require('express-async-errors');
 
 const app = express();
 app.use(express.json());
@@ -10,6 +11,12 @@ app.get('/', (_request, response) => {
 });
 
 app.get('/products', productController.getAll);
+app.get('/products/:id', productController.getById);
+
+app.use((err, req, res, _next) => {
+  const { code, message } = err;
+  res.status(code).json({ message });
+});
 
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima

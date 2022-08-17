@@ -1,5 +1,16 @@
 const productModel = require('../models/productModel');
+const validations = require('../middlewares/validations');
 
-const getAll = async () => productModel.getAll();
+const productService = {
+  getAll: async () => productModel.getAll(),
 
-module.exports = { getAll };
+  getById: async (id) => {
+    const exists = await validations.checkIfExists(id);
+    if (exists) {
+      const selectedProduct = await productModel.getById(id);
+      return selectedProduct;
+    }
+  },
+};
+
+module.exports = productService;
