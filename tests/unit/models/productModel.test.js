@@ -4,9 +4,7 @@ const Sinon = require('sinon');
 const connection = require('../../../models/connection');
 const productModel = require('../../../models/productModel');
 
-describe('GET ALL', () => {
-  describe('Caso OK', () => {
-
+describe('GET ALL - productModel', () => {
     afterEach(() => {
       Sinon.restore();
     });
@@ -35,9 +33,8 @@ describe('GET ALL', () => {
     it('retorna um array que contenha objetos', async function () {
       const resultExecute = [{ id: 1, name: 'test' }];
       Sinon.stub(connection, 'execute').resolves([resultExecute]);
-      const [result] = await empresaModel.getAll();
+      const [result] = await productModel.getAll();
       expect(result).to.be.an('object');
       expect(result).to.all.keys('name', 'id');
     });
-  })
 })
