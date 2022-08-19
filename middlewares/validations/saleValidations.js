@@ -6,7 +6,7 @@ const saleValidations = {
     const exists = await saleModel.getById(id);
 
     if (!exists || exists.length === 0) {
-      const err = new Error('404|Sale not found');
+      const err = new Error('404|Product not found');
       throw err;
     }
     return exists;
