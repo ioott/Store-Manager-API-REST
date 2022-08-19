@@ -1,7 +1,7 @@
 const Joi = require('joi');
-const productModel = require('../models/productModel');
+const productModel = require('../../models/productModel');
 
-const validations = {
+const productValidations = {
   checkIfExists: async (id) => {
     const exists = await productModel.getById(id);
     if (!exists) {
@@ -26,4 +26,4 @@ const validations = {
   },
 };
 
-module.exports = validations;
+module.exports = productValidations;
